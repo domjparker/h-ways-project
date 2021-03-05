@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import ListOfStudents from './ListOfStudents';
 import ScrollFeature from './ScrollFeature';
-import SearchByName from './SearchByName';
+import SearchInput from './SearchInput';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -28,7 +28,8 @@ function App() {
   return (
     <div className="app">
       <ScrollFeature>
-        <SearchByName searchNameChange={onSearchNameChange}/>
+        <SearchInput searchNameChange={onSearchNameChange} placeholder={"Search by name"}/>
+        <SearchInput placeholder={"Search by tag"}/>
         <ListOfStudents students={NAMES_FILTERED} />
       </ScrollFeature>
     </div>

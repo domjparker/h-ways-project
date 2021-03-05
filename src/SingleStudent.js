@@ -1,5 +1,7 @@
 import React from 'react';
 import './index.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill }) => {
 
@@ -23,6 +25,9 @@ const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill
           <p>Company: {company}</p>
           <p>Skill: {skill}</p>
           <p>Average: {getGradeAverage()}%</p>
+        </div>
+        <div id="grades-button-div">
+          <FontAwesomeIcon id="plus-button" icon={faPlus} />
         </div>
     </div>
   )
