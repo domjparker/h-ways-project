@@ -1,13 +1,126 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(239,239,239,255);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  overflow: hidden;
+}
+
+
+.scroll-feature-div {
+  background-color:rgba(255,255,255,255);
+  overflow-y: scroll;
+  margin: 10vh 20vw 10vh 20vw;
+  height: 80vh;
+  width: 60vw;
+  border-radius: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -moz-box-shadow:     1px 2px 4px rgb(174, 174, 174);
+  -webkit-box-shadow:  1px 2px 4px rgb(174, 174, 174);
+  box-shadow:          1px 2px 4px rgb(174, 174, 174);
+}
+
+.scroll-feature-div::-webkit-scrollbar {
+  display: none;
+}
+
+#search-by-name-div {
+  margin: 8px;
+  /* border-bottom: 1px solid rgb(194, 194, 194); */
+  padding-top: 7px;
+}
+
+#search-by-name-input {
+  border: none;
+  font-size: large;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  margin-left: 7px;
+}
+
+#search-by-name-input:focus ~ #search-by-name-hr {
+  background-color: black;
+}
+
+#search-by-name-hr {
+  margin-bottom: 0px;
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+#search-by-name-input:focus {
+  outline: none;
+}
+
+#search-by-name-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+#search-by-name-input::-moz-placeholder { /* Firefox 19+ */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+#search-by-name-input::-ms-input-placeholder { /* IE 10+ */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+#search-by-name-input::-moz-placeholder { /* Firefox 18- */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+.list-of-students-div {
+  background-color: white;
+}
+
+.single-student-div {
+  /* background-color: white; */
+  border-bottom: 1px solid rgba(249,249,249,255);
+  display: grid;
+  width: 100%;
+  grid-template-columns: 20% 80%;
+  /* grid-auto-rows: auto; */
+}
+
+.image-div {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  padding: 20% 15%;
+}
+
+.image-div img {
+  border-radius: 50%;
+  border: 1px solid rgb(210, 210, 210);
+  height: auto;
+  width: 100%;
+}
+
+.info-div {
+  grid-column: 2 / 5;
+  grid-row: 1;
+}
+
+.student-name {
+  text-transform: uppercase;
+  font-size: 215%;
+  font-stretch: semi-expanded;
+  margin: 15px 0;
+}
+
+p {
+  font-weight: lighter;
+  color: rgba(0, 0, 0, 0.783);
+  margin: 6px 0px;
+  padding-left: 20px;
+  font-size: 90%;
 }

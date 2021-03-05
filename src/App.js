@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './index.css';
+import ListOfStudents from './ListOfStudents';
+import ScrollFeature from './ScrollFeature';
+import SearchByName from './SearchByName';
 
 function App() {
+  const [students, setStudents] = useState([]);
+  const [searchByNameField, setSearchByNameField] = useState("")
+
+  useEffect(() => {
+    fetch('https://api.hatchways.io/assessment/students')
+      .then(response => response.json())
+      .then(data => setStudents(data.students))
+      .catch(console.error)
+  }, []);
+
+  function onSearchNameChange(e) {
+    setSearchByNameField(e.target.value);
+  }
+
+  const NAMES_FILTERED = students.filter(student => {
+    let fullName = student.firstName + " " + student.lastName;
+    return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <ScrollFeature>
+        <SearchByName searchNameChange={onSearchNameChange}/>
+        <ListOfStudents students={NAMES_FILTERED} />
+      </ScrollFeature>
     </div>
   );
 }

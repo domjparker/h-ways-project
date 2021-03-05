@@ -1,38 +1,20 @@
-.App {
-  text-align: center;
+/* .app {
+  background-color: rgba(247, 247, 243, 0.762);
+  padding: 20vh 20vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.scroll-feature-div {
+  background-color: white;
+  overflow-y: scroll;
+  border: 5px solid black;
+  height: 20vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.list-of-students-div {
+  background-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.single-student-div {
+  background-color: white;
+} */
