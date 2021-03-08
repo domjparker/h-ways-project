@@ -88,7 +88,8 @@ body {
   border-bottom: 1px solid rgba(249,249,249,255);
   display: grid;
   width: 100%;
-  grid-template-columns: 20% 75% 5%;
+  grid-template-columns: 20% 70% 10%;
+  grid-template-rows: 2;
   /* grid-auto-rows: auto; */
 }
 
@@ -117,7 +118,7 @@ body {
   margin: 15px 0;
 }
 
-p {
+.info-p {
   font-weight: lighter;
   color: rgba(0, 0, 0, 0.783);
   margin: 6px 0px;
@@ -128,10 +129,28 @@ p {
 #grades-button-div {
   grid-column: 3 / 3;
   grid-row: 1;
+  justify-self: center;
+  padding-left: 10px;
 }
 
 #plus-button {
   color: #a9a9a9;
-  font-size: xx-large;
-  margin: 18px 0px;
+  font-size: 27px;
+  margin: 20px 0px;
+  cursor: pointer;
+}
+
+#grades-breakdown-div {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  margin-bottom: 15px;
+}
+
+#grades-breakdown-div .grades-p {
+  font-weight: lighter;
+  color: rgba(0, 0, 0, 0.783);
+  margin: 6px 0px;
+  padding-left: 20px;
+  font-size: 90%;
+  margin: 0;
 }
