@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import GradesBreakdown from './GradesBreakdown';
 
 const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill }) => {
 
-  const [showGrades, setShowGrades] = useState('hide')
+  const [showGrades, setShowGrades] = useState('hide');
+  const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus)
 
   function getGradeAverage() {
     let average = 0;
@@ -17,8 +19,14 @@ const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill
   }
 
   function handleGradesDisplay() {
-    if (showGrades === "show") setShowGrades("hide");
-    else setShowGrades("show");
+    if (showGrades === "show") {
+      setShowGrades("hide");
+      setToggleGradesBtn(faPlus)
+    }
+    else {
+      setShowGrades("show");
+      setToggleGradesBtn(faMinus)
+    }
   }
 
   return (
@@ -34,7 +42,7 @@ const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill
         <p className="info-p">Average: {getGradeAverage()}%</p>
       </div>
       <div id="grades-button-div">
-        <FontAwesomeIcon onClick={handleGradesDisplay} id="plus-button" icon={faPlus} />
+        <FontAwesomeIcon onClick={handleGradesDisplay} id="plus-button" icon={toggleGradesBtn} />
       </div>
       {
         showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={grades} /></div> : null
