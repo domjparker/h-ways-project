@@ -9,7 +9,9 @@ import AddTagInput from './AddTagInput';
 const SingleStudent = (props) => {
 
   const [showGrades, setShowGrades] = useState('hide');
-  const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus)
+  const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus);
+  const [tagInputValue, setTagInputValue] = useState('');
+  const [indivTagList, setIndivTagList] = useState([]);
 
   function getGradeAverage() {
     let average = 0;
@@ -28,6 +30,16 @@ const SingleStudent = (props) => {
       setShowGrades("show");
       setToggleGradesBtn(faMinus)
     }
+  }
+
+  function handleTagInputValue(e) {
+    setTagInputValue(e.target.value);
+  }
+
+  function handleSubmitTag(e) {
+    let currentTagsListPlusNew = indivTagList.concat(tagInputValue);
+    setIndivTagList(currentTagsListPlusNew);
+    setTagInputValue('');
   }
 
   return (
@@ -49,7 +61,7 @@ const SingleStudent = (props) => {
         showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={props.grades} /></div> : null
       }
       <div id="add-tag-input-div">
-        <AddTagInput tagReturn={props.tagReturn} tagInputValue={props.tagInputValue}/>
+        <AddTagInput submitTagInput={handleSubmitTag} indivTagList={indivTagList} tagInputValue={tagInputValue} getTagInput={handleTagInputValue}/>
       </div>
     </div>
   )
