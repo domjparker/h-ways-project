@@ -4,18 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import GradesBreakdown from './GradesBreakdown';
+import AddTagInput from './AddTagInput';
 
-const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill }) => {
+const SingleStudent = (props) => {
 
   const [showGrades, setShowGrades] = useState('hide');
   const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus)
 
   function getGradeAverage() {
     let average = 0;
-    grades.forEach(grade => {
+    props.grades.forEach(grade => {
       average += Number(grade);
     });
-    return (average / grades.length).toString();
+    return (average / props.grades.length).toString();
   }
 
   function handleGradesDisplay() {
@@ -32,21 +33,24 @@ const SingleStudent = ({ grades, pic, firstName, lastName, email, company, skill
   return (
     <div className="single-student-div">
       <div className="image-div">
-        <img src={pic} alt={`${firstName} ${lastName}`} />
+        <img src={props.pic} alt={`${props.firstName} ${props.lastName}`} />
       </div>
       <div className="info-div">
-        <h1 className="student-name">{firstName} {lastName}</h1>
-        <p className="info-p">Email: {email}</p>
-        <p className="info-p">Company: {company}</p>
-        <p className="info-p">Skill: {skill}</p>
+        <h1 className="student-name">{props.firstName} {props.lastName}</h1>
+        <p className="info-p">Email: {props.email}</p>
+        <p className="info-p">Company: {props.company}</p>
+        <p className="info-p">Skill: {props.skill}</p>
         <p className="info-p">Average: {getGradeAverage()}%</p>
       </div>
       <div id="grades-button-div">
         <FontAwesomeIcon onClick={handleGradesDisplay} id="plus-button" icon={toggleGradesBtn} />
       </div>
       {
-        showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={grades} /></div> : null
+        showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={props.grades} /></div> : null
       }
+      <div id="add-tag-input-div">
+        <AddTagInput tagReturn={props.tagReturn} tagInputValue={props.tagInputValue}/>
+      </div>
     </div>
   )
 }

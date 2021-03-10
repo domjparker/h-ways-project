@@ -6,7 +6,8 @@ import SearchInput from './SearchInput';
 
 function App() {
   const [students, setStudents] = useState([]);
-  const [searchByNameField, setSearchByNameField] = useState("")
+  const [searchByNameField, setSearchByNameField] = useState("");
+  const [tagValue, setTagValue] = useState("")
 
   useEffect(() => {
     fetch('https://api.hatchways.io/assessment/students')
@@ -17,6 +18,10 @@ function App() {
 
   function onSearchNameChange(e) {
     setSearchByNameField(e.target.value);
+  }
+
+  function onTagInputSubmit(e) {
+    setTagValue(e.target.value);
   }
 
   const NAMES_FILTERED = students.filter(student => {
@@ -30,7 +35,7 @@ function App() {
       <ScrollFeature>
         <SearchInput searchNameChange={onSearchNameChange} placeholder={"Search by name"}/>
         <SearchInput placeholder={"Search by tag"}/>
-        <ListOfStudents students={NAMES_FILTERED} />
+        <ListOfStudents tagInputValue={onTagInputSubmit} tagReturn={tagValue} students={NAMES_FILTERED} />
       </ScrollFeature>
     </div>
   );

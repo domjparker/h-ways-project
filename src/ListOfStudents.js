@@ -2,23 +2,25 @@ import React from 'react';
 import SingleStudent from './SingleStudent';
 import './index.css';
 
-const ListOfStudents = ({students}) => {
+const ListOfStudents = (props) => {
   return (
     <>
       <div className="list-of-students-div">
         {
-          students.map((student, index) => {
+          props.students.map((student, index) => {
             return (
               <SingleStudent
-                key={students[index].id}
-                id={students[index].id}
-                pic={students[index].pic}
-                firstName={students[index].firstName}
-                lastName={students[index].lastName}
-                email={students[index].email}
-                company={students[index].company}
-                skill={students[index].skill}
-                grades={students[index].grades}
+                key={student.id}
+                id={student.id}
+                pic={student.pic}
+                firstName={student.firstName}
+                lastName={student.lastName}
+                email={student.email}
+                company={student.company}
+                skill={student.skill}
+                grades={student.grades}
+                tagInputValue={props.tagInputValue}
+                tagReturn={props.tagReturn}
               />
             )
           })
