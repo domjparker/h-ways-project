@@ -20,7 +20,7 @@ const ListOfStudents = (props) => {
                 skill={student.skill}
                 grades={student.grades}
                 tagInputValue={props.tagInputValue}
-                tagReturn={props.tagReturn}
+                onChange={props.onChange}
               />
             )
           })

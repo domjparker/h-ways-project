@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,13 @@ const SingleStudent = (props) => {
 
   const [showGrades, setShowGrades] = useState('hide');
   const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus);
-  const [tagInputValue, setTagInputValue] = useState('');
-  const [indivTagList, setIndivTagList] = useState([]);
+  // const [indivTagList, setIndivTagList] = useState([]);
+
+  useEffect(() => {
+    if (props.OnChange) {
+      props.onChange(e => props.id())
+    }
+  })
 
   function getGradeAverage() {
     let average = 0;
@@ -32,15 +37,20 @@ const SingleStudent = (props) => {
     }
   }
 
-  function handleTagInputValue(e) {
-    setTagInputValue(e.target.value);
-  }
+  // function handleSubmitTag(e) {
+  //   if (!indivTagList.includes(tagInputValue)) {
+  //     let currentTagsListPlusNew = indivTagList.concat(tagInputValue);
+  //     setIndivTagList(currentTagsListPlusNew);
+  //   }
+  //   setTagInputValue('');
+  // }
 
-  function handleSubmitTag(e) {
-    let currentTagsListPlusNew = indivTagList.concat(tagInputValue);
-    setIndivTagList(currentTagsListPlusNew);
-    setTagInputValue('');
-  }
+  // function handleSubmitTag() {
+  //   // if (!props.tagData[props.id].includes(tagInputValue)) {
+  //   //   let currentIndivTagsListPlusNew = props.tagData[props.id].concat(tagInputValue);
+  //     return props.tagDataOnSubmit(props.id, tagInputValue);
+  //   // }
+  // } 
 
   return (
     <div className="single-student-div">
@@ -61,7 +71,7 @@ const SingleStudent = (props) => {
         showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={props.grades} /></div> : null
       }
       <div id="add-tag-input-div">
-        <AddTagInput submitTagInput={handleSubmitTag} indivTagList={indivTagList} tagInputValue={tagInputValue} getTagInput={handleTagInputValue}/>
+        <AddTagInput submitTagInput={props.onChange} studentId={props.id}/>
       </div>
     </div>
   )
