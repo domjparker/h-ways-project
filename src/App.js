@@ -6,9 +6,10 @@ import SearchInput from './SearchInput';
 
 function App() {
   const [students, setStudents] = useState([]);
-  const [searchByNameField, setSearchByNameField] = useState(""); 
-  const [searchByTagField, setSearchByTagField] = useState(""); 
+  const [searchByNameField, setSearchByNameField] = useState("");
+  const [searchByTagField, setSearchByTagField] = useState("");
   const [tagData, setTagData] = useState({});
+  // const [filteredStudents, setFilteredStudents] = useState(students)
 
   useEffect(() => {
     fetch('https://api.hatchways.io/assessment/students')
@@ -17,9 +18,13 @@ function App() {
       .catch(console.error)
   }, []);
 
-  // function onSearchNameChange(e) {
-  //   setSearchByNameField(e.target.value);
-  // }
+  function onSearchNameChange(e) {
+    setSearchByNameField(e.target.value);
+  }
+
+  function onSearchTagChange(e) {
+    setSearchByTagField(e.target.value);
+  }
 
   function handleTagSubmit(submittedTag, studentId) {
     let currentTagData = tagData;
@@ -40,22 +45,83 @@ function App() {
     //
     // let dummyData = {studentId: [submittedTag]}
     // setTagData();
-      // setTagData(...tagData, tagData[studentID] = [...tagData[studentID], indivStudentTagArr])
-    
+    // setTagData(...tagData, tagData[studentID] = [...tagData[studentID], indivStudentTagArr])
+
   }
 
-  const STUDENTS_FILTERED = students.filter(student => {
-    let fullName = student.firstName + " " + student.lastName;
-    return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
-  })
+  // function filterStudents() {
+  // let filteredByName = students.filter(student => {
+  //   let fullName = student.firstName + " " + student.lastName;
+  //   return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
+  // })
+
+  // let filteredByTag = Object.keys(tagData).filter(tagKey => {
+  //   return tagKey.toLowerCase().includes(searchByTagField.toLowerCase());
+  // })
+
+  // let filteredArrayOfIDsByTag = [];
+  // filteredByTag.forEach(tagKey => {
+  //   return tagData[tagKey].forEach(id => {
+  //     if (!filteredArrayOfIDsByTag.includes(id)) filteredArrayOfIDsByTag.push(id);
+  //     return;
+  //   })
+  // });
+
+  // let finalFilteredList = filteredByName.forEach(student => {
+  //   return filteredArrayOfIDsByTag.includes(student.id);
+  // }) 
+
+  // console.log(filteredArrayOfIDsByTag)
+
+  // setFilteredStudents(finalFilteredList)
+  // }
+
+  let filteredByTag = Object.keys(tagData).filter(tagKey => {
+    return tagKey.toLowerCase().includes(searchByTagField.toLowerCase());
+  }) // returns array of 
+
+  let arrayOfIDsByTag = [];
+  filteredByTag.forEach(tagKey => {
+    return tagData[tagKey].forEach(id => {
+      if (!arrayOfIDsByTag.includes(id)) arrayOfIDsByTag.push(id);
+      return;
+    })
+  });
+
+  let filteredStudents = students;
+
+  if (searchByNameField !== "" && searchByTagField === "") {
+    filteredStudents = students.filter(student => {
+      let fullName = student.firstName + " " + student.lastName;
+      return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
+    })
+  }
+
+  if (searchByNameField === "" && searchByTagField !== "") {
+    filteredStudents = students.filter(student => {
+      return arrayOfIDsByTag.includes(student.id);
+    })
+  }
+
+  if (searchByNameField !== "" && searchByTagField !== "") {
+    let filteredNames = students.filter(student => {
+      let fullName = student.firstName + " " + student.lastName;
+      return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
+    });
+    filteredStudents = filteredNames.filter(student => {
+      return arrayOfIDsByTag.includes(student.id);
+    })
+  }
+
+    console.log(arrayOfIDsByTag)
 
 
   return (
     <div className="app">
       <ScrollFeature>
-        <SearchInput searchInputChange={(e) => setSearchByNameField(e.target.value)} placeholder={"Search by name"}/>
-        <SearchInput searchInputChange={(e) => setSearchByTagField(e.target.value)} placeholder={"Search by tag"}/>
-        <ListOfStudents onChange={handleTagSubmit} students={STUDENTS_FILTERED} />
+        <SearchInput searchInputChange={onSearchNameChange} placeholder={"Search by name"} />
+        <SearchInput searchInputChange={onSearchTagChange} placeholder={"Search by tag"} />
+        <ListOfStudents onChange={handleTagSubmit} students={filteredStudents} />
       </ScrollFeature>
     </div>
   );

@@ -4,10 +4,17 @@ import './index.css';
 function AddTagInput(props) {
   
   const [tagInput, setTagInput] = useState('');
+  const [tags, setTags] = useState([])
+
+  function addToTags() {
+    tags.push(tagInput);
+    console.log(tags)
+  }
   
   function handleSubmit(e) {
     e.preventDefault();
     props.submitTagInput(tagInput, props.studentId);
+    addToTags();
     setTagInput("");
   }
 
@@ -19,9 +26,9 @@ function AddTagInput(props) {
 
   return (
     <div>
-    <h5>{props.studentId}</h5>
+    <h5>{tags}</h5>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input className="add-tag-input" type="text" value={props.tagInputValue} placeholder="Add a tag" onChange={handleInputChange}></input>
+        <input className="add-tag-input" type="text" value={tagInput} placeholder="Add a tag" onChange={handleInputChange}></input>
       </form>
     </div>
   );
