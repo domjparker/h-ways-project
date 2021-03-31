@@ -4,17 +4,20 @@ import './index.css';
 function AddTagInput(props) {
   
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState([props.studentTags])
 
   function addToTags() {
-    tags.push(tagInput);
-    console.log(tags)
+    if (!tags.includes(tagInput)) {
+      let updatedTags = tags.concat(tagInput);
+      setTags(updatedTags);
+      console.log("line 13", tags); // remove later
+    }
   }
   
   function handleSubmit(e) {
     e.preventDefault();
     props.submitTagInput(tagInput, props.studentId);
-    addToTags();
+    addToTags(tagInput);
     setTagInput("");
   }
 

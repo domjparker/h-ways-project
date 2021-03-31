@@ -29,9 +29,9 @@ function App() {
   function handleTagSubmit(submittedTag, studentId) {
     let currentTagData = tagData;
     // if (Object.keys(currentTagData).length === 0)
-    if (!currentTagData[submittedTag]) currentTagData[submittedTag] = [studentId];
-    else if (!currentTagData[submittedTag].includes(studentId)) {
-      currentTagData[submittedTag].push(studentId);
+    if (!currentTagData[studentId]) currentTagData[studentId] = [submittedTag];
+    else if (!currentTagData[studentId].includes(submittedTag)) {
+      currentTagData[studentId].push(submittedTag);
     }
     // else if (currentTagData[submittedTag].includes(studentId)) return;
     console.log(currentTagData)
@@ -48,72 +48,44 @@ function App() {
     // setTagData(...tagData, tagData[studentID] = [...tagData[studentID], indivStudentTagArr])
 
   }
+  console.log("tagData", tagData)
 
-  // function filterStudents() {
-  // let filteredByName = students.filter(student => {
-  //   let fullName = student.firstName + " " + student.lastName;
-  //   return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
-  // })
+  function filterNames() {
+    return students.filter(student => {
+      let fullName = student.firstName + " " + student.lastName;
+      return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
+    });
+  }
 
-  // let filteredByTag = Object.keys(tagData).filter(tagKey => {
-  //   return tagKey.toLowerCase().includes(searchByTagField.toLowerCase());
-  // })
+  let filteredIDsByTagSearch = Object.keys(tagData).filter(idKey => {
+    let studentTagArr = tagData[idKey];
+    console.log("studentTagArr", studentTagArr)
+    if (studentTagArr.some(tag => tag.includes(searchByTagField))) {
+      return idKey;
+    }
+    return false;
+  }) 
 
-  // let filteredArrayOfIDsByTag = [];
-  // filteredByTag.forEach(tagKey => {
-  //   return tagData[tagKey].forEach(id => {
-  //     if (!filteredArrayOfIDsByTag.includes(id)) filteredArrayOfIDsByTag.push(id);
-  //     return;
-  //   })
-  // });
-
-  // let finalFilteredList = filteredByName.forEach(student => {
-  //   return filteredArrayOfIDsByTag.includes(student.id);
-  // }) 
-
-  // console.log(filteredArrayOfIDsByTag)
-
-  // setFilteredStudents(finalFilteredList)
-  // }
-
-  let filteredByTag = Object.keys(tagData).filter(tagKey => {
-    return tagKey.toLowerCase().includes(searchByTagField.toLowerCase());
-  }) // returns array of 
-
-  let arrayOfIDsByTag = [];
-  filteredByTag.forEach(tagKey => {
-    return tagData[tagKey].forEach(id => {
-      if (!arrayOfIDsByTag.includes(id)) arrayOfIDsByTag.push(id);
-      return;
-    })
-  });
+  // console.log("filteredIDsByTag", filteredIDsByTagSearch)
 
   let filteredStudents = students;
 
   if (searchByNameField !== "" && searchByTagField === "") {
-    filteredStudents = students.filter(student => {
-      let fullName = student.firstName + " " + student.lastName;
-      return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
-    })
+    filteredStudents = filterNames();
   }
 
   if (searchByNameField === "" && searchByTagField !== "") {
     filteredStudents = students.filter(student => {
-      return arrayOfIDsByTag.includes(student.id);
+      return filteredIDsByTagSearch.includes(student.id);
     })
   }
 
   if (searchByNameField !== "" && searchByTagField !== "") {
-    let filteredNames = students.filter(student => {
-      let fullName = student.firstName + " " + student.lastName;
-      return fullName.toLowerCase().includes(searchByNameField.toLowerCase());
-    });
+    let filteredNames = filterNames();
     filteredStudents = filteredNames.filter(student => {
-      return arrayOfIDsByTag.includes(student.id);
+      return filteredIDsByTagSearch.includes(student.id);
     })
   }
-
-    console.log(arrayOfIDsByTag)
 
 
   return (
@@ -121,7 +93,7 @@ function App() {
       <ScrollFeature>
         <SearchInput searchInputChange={onSearchNameChange} placeholder={"Search by name"} />
         <SearchInput searchInputChange={onSearchTagChange} placeholder={"Search by tag"} />
-        <ListOfStudents onChange={handleTagSubmit} students={filteredStudents} />
+        <ListOfStudents onChange={handleTagSubmit} students={filteredStudents} tagData={tagData}/>
       </ScrollFeature>
     </div>
   );

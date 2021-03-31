@@ -7,7 +7,7 @@ const ListOfStudents = (props) => {
     <>
       <div className="list-of-students-div">
         {
-          props.students.map((student, index) => {
+          props.students.map(student => {
             return (
               <SingleStudent
                 key={student.id}
@@ -21,6 +21,7 @@ const ListOfStudents = (props) => {
                 grades={student.grades}
                 tagInputValue={props.tagInputValue}
                 onChange={props.onChange}
+                studentTagData={props.tagData[student.id]}
               />
             )
           })
