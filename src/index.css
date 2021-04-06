@@ -96,7 +96,9 @@ body {
 .image-div {
   grid-column: 1 / 2;
   grid-row: 1;
-  padding: 20% 15%;
+  padding: 0% 10%;
+  margin-top: 20px;
+  margin-bottom: 6px;
 }
 
 .image-div img {
@@ -167,8 +169,20 @@ body {
 .add-tag-input {
   border: none;
   padding-bottom: 10px;
+  margin-top: 15px;
 }
 
 .add-tag-input:focus {
   outline: none;
+}
+
+.individual-tag-div {
+  background-color: lightgrey;
+  font-weight: 100;
+  font-family: 'Raleway', sans-serif;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 2px;
+  float: left;
+  
 }

@@ -66,8 +66,6 @@ function App() {
     return false;
   }) 
 
-  // console.log("filteredIDsByTag", filteredIDsByTagSearch)
-
   let filteredStudents = students;
 
   if (searchByNameField !== "" && searchByTagField === "") {
