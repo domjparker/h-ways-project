@@ -48,7 +48,7 @@ const SingleStudent = (props) => {
         showGrades === 'show' ? <div id="grades-breakdown-div" ><GradesBreakdown grades={props.grades} /></div> : null
       }
       <div id="add-tag-input-div">
-        <AddTagInput submitTagInput={props.onChange} studentId={props.id} studentTags={props.studentTagData}/>
+        <AddTagInput submitTagInput={props.onChange} studentId={props.id} tagData={props.tagData}/>
       </div>
     </div>
   )

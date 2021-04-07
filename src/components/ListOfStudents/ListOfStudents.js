@@ -21,7 +21,7 @@ const ListOfStudents = (props) => {
                 grades={student.grades}
                 tagInputValue={props.tagInputValue}
                 onChange={props.onChange}
-                studentTagData={props.tagData[student.id]}
+                tagData={props.tagData}
               />
             )
           })

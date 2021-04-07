@@ -4,7 +4,7 @@ import './addTagInput.css';
 function AddTagInput(props) {
   const [tagInput, setTagInput] = useState('');
 
-  let tagsArray = props.studentTags;
+  let tagsArray = props.tagData[props.studentId];
   if (tagsArray === undefined) tagsArray = [];
 
   function handleSubmit(e) {
