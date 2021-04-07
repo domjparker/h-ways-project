@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './index.css';
-import ListOfStudents from './ListOfStudents';
-import ScrollFeature from './ScrollFeature';
-import SearchInput from './SearchInput';
+import './App.css';
+import ListOfStudents from './components/ListOfStudents/ListOfStudents';
+import ScrollFeature from './components/ScrollFeature/ScrollFeature';
+import SearchInput from './components/SearchInput/SearchInput';
 
 function App() {
   const [students, setStudents] = useState([]);
   const [searchByNameField, setSearchByNameField] = useState("");
   const [searchByTagField, setSearchByTagField] = useState("");
-  const [tagData, setTagData] = useState({});
-  // const [filteredStudents, setFilteredStudents] = useState(students)
+  const [tagData, setTagData] = useState({});  
 
   useEffect(() => {
     fetch('https://api.hatchways.io/assessment/students')
@@ -28,25 +27,12 @@ function App() {
 
   function handleTagSubmit(submittedTag, studentId) {
     let currentTagData = tagData;
-    // if (Object.keys(currentTagData).length === 0)
     if (!currentTagData[studentId]) currentTagData[studentId] = [submittedTag];
     else if (!currentTagData[studentId].includes(submittedTag)) {
       currentTagData[studentId].push(submittedTag);
     }
-    // else if (currentTagData[submittedTag].includes(studentId)) return;
-    console.log(currentTagData)
-    // } else currentTagData[studentId].concat(submittedTag);
-    // console.log(currentTagData);
+    // console.log(currentTagData)
     setTagData(currentTagData);
-    // if (!tagData[studentID].includes(indivStudentTagInput)) {
-    //   tagListWithUpdate = tagData[studentID].concat(indivStudentTagInput);
-    // }
-    // setTagData(updatedData);
-    //
-    // let dummyData = {studentId: [submittedTag]}
-    // setTagData();
-    // setTagData(...tagData, tagData[studentID] = [...tagData[studentID], indivStudentTagArr])
-
   }
   console.log("tagData", tagData)
 
@@ -85,6 +71,7 @@ function App() {
     })
   }
 
+    console.log("appJs, line 88", tagData)
 
   return (
     <div className="app">

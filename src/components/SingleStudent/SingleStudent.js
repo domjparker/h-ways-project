@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './index.css';
+import './singleStudent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
-import GradesBreakdown from './GradesBreakdown';
-import AddTagInput from './AddTagInput';
+import GradesBreakdown from '../GradesBreakdown/GradesBreakdown';
+import AddTagInput from '../AddTagInput/AddTagInput';
 
 const SingleStudent = (props) => {
-
   const [showGrades, setShowGrades] = useState('hide');
   const [toggleGradesBtn, setToggleGradesBtn] = useState(faPlus);
-  // const [indivTagList, setIndivTagList] = useState([]);
-
-  useEffect(() => {
-    if (props.OnChange) {
-      props.onChange(e => props.id())
-    }
-  })
 
   function getGradeAverage() {
     let average = 0;
@@ -36,21 +28,6 @@ const SingleStudent = (props) => {
       setToggleGradesBtn(faMinus)
     }
   }
-
-  // function handleSubmitTag(e) {
-  //   if (!indivTagList.includes(tagInputValue)) {
-  //     let currentTagsListPlusNew = indivTagList.concat(tagInputValue);
-  //     setIndivTagList(currentTagsListPlusNew);
-  //   }
-  //   setTagInputValue('');
-  // }
-
-  // function handleSubmitTag() {
-  //   // if (!props.tagData[props.id].includes(tagInputValue)) {
-  //   //   let currentIndivTagsListPlusNew = props.tagData[props.id].concat(tagInputValue);
-  //     return props.tagDataOnSubmit(props.id, tagInputValue);
-  //   // }
-  // } 
 
   return (
     <div className="single-student-div">

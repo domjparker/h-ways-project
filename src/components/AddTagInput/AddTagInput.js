@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
-import ListOfTags from './ListOfTags';
-import './index.css';
+import './addTagInput.css';
 
 function AddTagInput(props) {
-
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState([props.studentTags])
 
-  function addToTags() {
-    if (!tags.includes(tagInput)) {
-      let updatedTags = tags.concat(tagInput);
-      setTags(updatedTags);
-      console.log("line 14", tags); // remove later
-    }
-  }
+  let tagsArray = props.studentTags;
+  if (tagsArray === undefined) tagsArray = [];
 
   function handleSubmit(e) {
     e.preventDefault();
-    // if (tagInput !== "") {
-      props.submitTagInput(tagInput, props.studentId);
-      addToTags(tagInput);
-      setTagInput("");
-    // }
+    props.submitTagInput(tagInput, props.studentId);
+    setTagInput("");
   }
 
   function handleInputChange(e) {
@@ -29,10 +18,19 @@ function AddTagInput(props) {
     setTagInput(e.target.value)
   }
 
-
   return (
     <div>
-      <ListOfTags tagsList={tags} />
+      <div className="list-of-tags-div">
+        {
+          tagsArray.map((tag, idx) => {
+            return (
+              <div className="individual-tag-div" key={idx}>
+                {tag}
+              </div>
+            )
+          })
+        }
+      </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input className="add-tag-input" type="text" value={tagInput} placeholder="Add a tag" onChange={handleInputChange}></input>
       </form>

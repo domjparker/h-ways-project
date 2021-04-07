@@ -1,10 +1,7 @@
 import React from 'react';
-
+import './gradesBreakdown.css';
 
 const GradesBreakdown = (props) => {
-
-
-
   return (
     <div>
     <p className="grades-p">Test 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.grades[0]}%</p>

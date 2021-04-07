@@ -1,6 +1,6 @@
 import React from 'react';
-import SingleStudent from './SingleStudent';
-import './index.css';
+import SingleStudent from '../SingleStudent/SingleStudent';
+import './listOfStudents.css';
 
 const ListOfStudents = (props) => {
   return (

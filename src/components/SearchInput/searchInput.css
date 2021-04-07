@@ -1,0 +1,49 @@
+.search-input-div {
+  margin: 8px 8px 0px 8px;
+  /* border-bottom: 1px solid rgb(194, 194, 194); */
+  padding-top: 10px;
+}
+
+.search-input {
+  border: none;
+  font-size: large;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  margin-left: 7px;
+}
+
+.search-input:focus ~ #search-input-hr {
+  background-color: black;
+}
+
+.search-input-hr {
+  margin-bottom: 0px;
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+.search-input::-moz-placeholder { /* Firefox 19+ */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+.search-input::-ms-input-placeholder { /* IE 10+ */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}
+.search-input::-moz-placeholder { /* Firefox 18- */
+  font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+
+}

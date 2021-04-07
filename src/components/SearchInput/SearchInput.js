@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './searchInput.css';
 
 function SearchInput(props) {
   return (
