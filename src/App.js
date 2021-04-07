@@ -8,7 +8,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [searchByNameField, setSearchByNameField] = useState("");
   const [searchByTagField, setSearchByTagField] = useState("");
-  const [tagData, setTagData] = useState({});  
+  const [tagData, setTagData] = useState({});
 
   useEffect(() => {
     fetch('https://api.hatchways.io/assessment/students')
@@ -31,7 +31,7 @@ function App() {
     else if (!currentTagData[studentId].includes(submittedTag)) {
       currentTagData[studentId].push(submittedTag);
     }
-    // console.log(currentTagData)
+
     setTagData(currentTagData);
   }
   console.log("tagData", tagData)
@@ -70,9 +70,6 @@ function App() {
       return filteredIDsByTagSearch.includes(student.id);
     })
   }
-
-    console.log("appJs, line 88", tagData)
-
   return (
     <div className="app">
       <ScrollFeature>
