@@ -9,8 +9,10 @@ function AddTagInput(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.submitTagInput(tagInput, props.studentId);
+    if (tagInput !== "") {
+      props.submitTagInput(tagInput, props.studentId);
     setTagInput("");
+    }
   }
 
   function handleInputChange(e) {
